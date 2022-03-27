@@ -23,6 +23,9 @@ from install import _install_ionc
 
 C_EXT = True if not hasattr(sys, 'pypy_translation_info') else False
 
+# this grabs the requirements from requirements.txt
+REQUIREMENTS = [i.strip() for i in open("requirements.txt").readlines()]
+
 
 def run_setup():
     if C_EXT and _install_ionc():
@@ -65,6 +68,8 @@ def run_setup():
         setup_requires=[
             'pytest-runner',
         ],
+
+        install_requires=REQUIREMENTS,
 
         tests_require=[
             'pytest',
